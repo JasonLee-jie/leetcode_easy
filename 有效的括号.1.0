@@ -1,0 +1,29 @@
+class Solution {
+    
+    public boolean isValid(String s) {
+        // 当字符串长度为奇数的时候，属于无效情况，字符串为奇数时，该字符串无论如何都无效
+        // 条件说明了长度至少为 1，所以不需要在判空，该题条件给定的字符串是不为空的
+      if (s.length() % 2 == 1) {
+         return false;
+       }
+       
+       //构建一个栈：
+        Stack<Character> stack = new Stack<Character>();
+        
+        //先由外向内遍历字符串：
+        for(char c : s.toCharArray()){
+            
+            if(c == '('){
+               stack.push(')');
+            }else if(c == '['){
+               stack.push(']');
+            }else if( c == '{'){
+               stack.push('}');
+            }else if( stack.isEmpty() || c != stack.pop()){
+            //表明有多余的括号：
+               return false;
+            }
+        }
+        return stack.isEmpty();
+    }
+}
