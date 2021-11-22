@@ -1,0 +1,45 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        //判断head是否为空
+        if(head==null){
+            return head;
+        }
+        ListNode temp = head;//头节点换指针   不换就不能有指向的功能
+        while (temp.next != null) {//如果初始头节点的下一个节点的数据等于空  也直接返回头节点
+            if (temp.val == temp.next.val) {//如果初始头节点的值等于初始头节点下一个节点的值
+                temp.next = temp.next.next;//我们将初始头节点的下一个节点的下一个节点的值赋值给初始头结点的下一个节点
+            } else {//如果初始头节点的值不等于初始头节点下一个节点的值
+                temp = temp.next;//我们将初始头节点的下一个节点的值给temp
+            }
+        }
+        return head;.//结果返回头节点
+        // ListNode zeroNode = new ListNode(-101, head);
+        // ListNode tempNode = zeroNode;
+        
+        // int num = tempNode.val;
+        
+        // while (head != null) {
+        
+        //     if (head.val == num) {
+        //         tempNode.next = head.next;
+        //     } else {
+        //         tempNode = tempNode.next;
+        //     }
+            
+        //     num = head.val;
+        //     head = head.next;
+        // }
+        
+        // return zeroNode.next;
+    }
+}
