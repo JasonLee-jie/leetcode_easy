@@ -1,0 +1,41 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode swapPairs(ListNode head) {
+        // ListNode dummyHead = new ListNode(0);//迭代
+        // dummyHead.next = head;
+        // ListNode temp = dummyHead;
+        // while (temp.next != null && temp.next.next != null) {
+        //     ListNode node1 = temp.next;
+        //     ListNode node2 = temp.next.next;
+        //     temp.next = node2;
+        //     node1.next = node2.next;
+        //     node2.next = node1;
+        //     temp = node1;
+        // }
+        // return dummyHead.next;
+        if (head == null || head.next == null) {//递归
+            return head;
+        }
+        ListNode newHead = head.next;
+        head.next = swapPairs(newHead.next);
+        newHead.next = head;
+        return newHead;
+        
+//如果链表中至少有两个节点，则在两两交换链表中的节点之后，原始链表的头节点变成新的链表的第二个节点，原始链表的第二个节点变成新的链表的头节//点。
+//链表中的其余节点的两两交换可以递归地实现。在对链表中的其余节点递归地两两交换之后，更新节点之间的指针关系，即可完成整个链表的两两交换。
+//用 head 表示原始链表的头节点，新的链表的第二个节点，用 newHead 表示新的链表的头节点，原始链表的第二个节点，
+//则原始链表中的其余节点的头节点是 newHead.next。令 head.next = swapPairs(newHead.next)，表示将其余节点进行两两交换，交换后的新的头节点为 head 的下一个节点。
+//然后令 newHead.next = head，即完成了所有节点的交换。最后返回新的链表的头节点 newHead。
+
+        
+    }
+}
